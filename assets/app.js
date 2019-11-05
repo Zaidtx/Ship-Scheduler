@@ -26,7 +26,7 @@ $("#add-ship").on("click", function (event) {
         name: name,
         destination: dest,
         frequency: freq,
-        firstTrain: time
+        firstShip: time
     }
 
     // adding all ships into DB
@@ -43,7 +43,25 @@ $("#freq-input").val("");
 
 });
 
+database.ref().on("child_added", function(childSnapshot) {
 
+    var shipName = childSnapshot.val().name;
+    var destination = childSnapshot.val().name;
+    var frequency = childSnapshot.val().name;
+    var firstShipTime = childSnapshot.val().name;
+    console.log("first ship time" +firstShipTime)
+
+
+    var shipDiff = moment().diff(moment(firsTimeConveted), "minutes");
+    console.log("diff" +shipDiff);
+    var shipRemaider = shipDiff % frequency;
+
+
+    
+
+
+
+})
 
 
 
