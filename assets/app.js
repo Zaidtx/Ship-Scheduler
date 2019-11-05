@@ -14,7 +14,7 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
 
-// clicl event for add-ship
+// click event for add-ship
 $("#add-ship").on("click", function (event) {
     event.preventDefault();
 
