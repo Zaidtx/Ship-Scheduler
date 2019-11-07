@@ -54,12 +54,12 @@ database.ref().on("child_added", function(childSnapshot) {
     console.log("first ship time" +firstShipTime)
 
     
-    var firsTimeConveted = moment.unix(firstTime).format("hh:mm");
+    var firsTimeConveted = moment.unix(firstShipTime).format("hh:mm");
 
     var shipDiff = moment().diff(moment(firsTimeConveted), "minutes");
     console.log("diff" +shipDiff);
     var shipRemaider = shipDiff % frequency;
-    
+
     var minUntil = frequency - shipRemaider;
     var nextArrival = moment().add(minUntil, "minutes").format('hh.mm');
 
