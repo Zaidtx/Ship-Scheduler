@@ -46,15 +46,38 @@ $("#freq-input").val("");
 database.ref().on("child_added", function(childSnapshot) {
 
     var shipName = childSnapshot.val().name;
-    var destination = childSnapshot.val().name;
-    var frequency = childSnapshot.val().name;
-    var firstShipTime = childSnapshot.val().name;
+    var destination = childSnapshot.val().destination;
+    var firstShipTime = childSnapshot.val().firstShip;
+    var frequency = childSnapshot.val().frequency;
+    
+
     console.log("first ship time" +firstShipTime)
 
+    
+    var firsTimeConveted = moment.unix(firstTime).format("hh:mm");
 
     var shipDiff = moment().diff(moment(firsTimeConveted), "minutes");
     console.log("diff" +shipDiff);
     var shipRemaider = shipDiff % frequency;
+    
+    var minUntil = frequency - shipRemaider;
+    var nextArrival = moment().add(minUntil, "minutes").format('hh.mm');
+
+
+    // new row 
+
+    const newRow = $("<tr>").append(
+        $("<td>").text(shipName),
+        $("<td>").text(destination),
+        $("<td>").text(frequency),
+        $("<td>").text(nextArrival),
+        $("<td>").text(firstShipTime),
+
+    );
+
+        $("#ship-table > tbody").append(newRow);
+
+   
 
 
     
